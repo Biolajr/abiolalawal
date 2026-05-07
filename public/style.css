@@ -306,19 +306,15 @@ ul { list-style: none; }
   animation: fadeUp 0.8s 0.2s ease both;
 }
 .hero-photo {
-  width: 280px; height: 340px;
-  border-radius: 16px;
+  width: 260px; height: 260px;
+  border-radius: 50%;
   overflow: hidden;
-  border: 1px solid var(--border);
+  border: 3px solid var(--accent);
   position: relative;
+  box-shadow: 0 0 0 6px rgba(99,102,241,0.15), 0 0 40px rgba(99,102,241,0.2);
 }
-.hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
-.hero-photo::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 60%, rgba(10,10,10,0.4) 100%);
-}
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; transform: scale(0.85); transform-origin: center 20%; }
+.hero-photo::after { display: none; }
 .hero-stats {
   display: flex;
   gap: 1px;
@@ -596,7 +592,7 @@ ul { list-style: none; }
 @media (max-width: 900px) {
   .hero { flex-direction: column; align-items: flex-start; min-height: auto; padding-bottom: 60px; }
   .hero-photo-wrap { align-self: center; padding-top: 0; }
-  .hero-photo { width: 240px; height: 290px; }
+  .hero-photo { width: 220px; height: 220px; }
   .projects-grid { grid-template-columns: 1fr; }
   .nav-links { display: none; }
   .nav-burger { display: flex; }
@@ -607,8 +603,160 @@ ul { list-style: none; }
   .section { padding: 64px 20px; }
   .hero { padding-left: 20px; padding-right: 20px; }
   .form-row { grid-template-columns: 1fr; }
-  .hero-photo { width: 200px; height: 240px; }
+  .hero-photo { width: 180px; height: 180px; }
   .tl-header { flex-direction: column; gap: 8px; }
   .footer-inner { flex-direction: column; }
   .footer-bottom { flex-direction: column; gap: 4px; }
+}
+
+/* ====== PROJECTS CATEGORY TITLE ====== */
+.projects-cat-title {
+  font-size: 13px;
+  font-family: var(--mono);
+  color: var(--text-2);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+}
+
+/* ====== RESUME HIGHLIGHT ====== */
+.resume-highlight {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 28px;
+  border: 1px solid rgba(99,102,241,0.3);
+  border-radius: var(--radius);
+  background: rgba(99,102,241,0.05);
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+.resume-info { display: flex; align-items: center; gap: 16px; }
+.resume-icon {
+  width: 52px; height: 52px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--accent-glow);
+  border: 1px solid rgba(99,102,241,0.3);
+  border-radius: var(--radius-sm);
+  color: var(--accent-2);
+  flex-shrink: 0;
+}
+.resume-info h3 { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.resume-info p { font-size: 13px; color: var(--text-2); }
+
+/* ====== DOCS GRID ====== */
+.docs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.docs-category {}
+.docs-cat-label {
+  font-size: 12px;
+  font-family: var(--mono);
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+.doc-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+  transition: border-color 0.2s, background 0.2s;
+  color: var(--text);
+}
+.doc-card:not(.placeholder):hover { border-color: var(--border-hover); background: rgba(255,255,255,0.02); }
+.doc-card.placeholder { opacity: 0.5; cursor: default; }
+.doc-icon { font-size: 18px; flex-shrink: 0; width: 28px; text-align: center; }
+.doc-info { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+.doc-title { font-size: 13.5px; font-weight: 500; color: var(--text); }
+.doc-meta { font-size: 11.5px; color: var(--text-3); }
+.doc-dl { color: var(--text-3); flex-shrink: 0; }
+.doc-badge {
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 100px;
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.05);
+  color: var(--text-3);
+  border: 1px solid var(--border);
+}
+.doc-badge.wip { background: var(--accent-glow); color: var(--accent-2); border-color: rgba(99,102,241,0.3); }
+
+/* Update nav to include resume link */
+@media (max-width: 768px) {
+  .docs-grid { grid-template-columns: 1fr; }
+  .resume-highlight { flex-direction: column; align-items: flex-start; }
+}
+
+/* ====== HERO PHOTO CIRCLE (new class name) ====== */
+.hero-photo-circle {
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--accent);
+  box-shadow: 0 0 0 6px rgba(99,102,241,0.15), 0 20px 60px rgba(0,0,0,0.4);
+  transition: box-shadow 0.3s;
+}
+.hero-photo-circle:hover { box-shadow: 0 0 0 8px rgba(99,102,241,0.25), 0 24px 70px rgba(0,0,0,0.5); }
+.hero-photo-circle img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+
+/* ====== PROJECTS TABS ====== */
+.projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 48px; }
+.project-card[data-pcat].hidden { display: none; }
+
+/* ====== RESUME SECTION ====== */
+.resume-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; flex-wrap: wrap; gap: 16px; }
+.resume-card { border: 1px solid var(--border); border-radius: var(--radius); padding: 40px; background: var(--bg); }
+.resume-name { font-family: var(--serif); font-size: 28px; font-weight: 400; color: var(--text); margin-bottom: 4px; letter-spacing: -0.02em; }
+.resume-role { font-size: 14px; color: var(--accent-2); font-family: var(--mono); margin-bottom: 12px; }
+.resume-contact { font-size: 13px; color: var(--text-2); margin-bottom: 0; }
+.resume-contact a { color: var(--accent-2); }
+.resume-contact a:hover { text-decoration: underline; }
+.resume-divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+.resume-section-title { font-size: 10px; font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 16px; }
+.resume-job { margin-bottom: 20px; }
+.resume-job-header { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 8px; flex-wrap: wrap; }
+.resume-job-title { font-size: 14px; font-weight: 600; color: var(--text); }
+.resume-job-date { font-family: var(--mono); font-size: 11px; color: var(--text-3); flex-shrink: 0; }
+.resume-list { padding-left: 0; }
+.resume-list li { font-size: 13.5px; color: var(--text-2); line-height: 1.7; padding: 2px 0 2px 16px; position: relative; }
+.resume-list li::before { content: '—'; position: absolute; left: 0; color: var(--accent); font-size: 11px; top: 5px; }
+.resume-body { font-size: 13.5px; color: var(--text-2); line-height: 1.8; }
+
+/* ====== DOCUMENTS SECTION ====== */
+.docs-grid { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+.doc-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-2);
+  transition: border-color 0.2s, background 0.2s, transform 0.2s;
+  color: var(--text);
+  cursor: pointer;
+}
+.doc-card:hover { border-color: var(--border-hover); background: var(--bg-3); transform: translateX(4px); }
+.doc-card[data-dcat].hidden { display: none; }
+.doc-icon { font-size: 22px; flex-shrink: 0; width: 36px; text-align: center; }
+.doc-info { flex: 1; display: flex; flex-direction: column; gap: 3px; }
+.doc-title { font-size: 14px; font-weight: 500; color: var(--text); }
+.doc-meta { font-size: 12px; color: var(--text-3); }
+.doc-download { font-family: var(--mono); font-size: 11px; color: var(--accent-2); border: 1px solid rgba(99,102,241,0.3); padding: 4px 10px; border-radius: 4px; flex-shrink: 0; }
+.docs-note { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-3); padding: 12px 16px; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+.docs-note svg { flex-shrink: 0; color: var(--accent); }
+
+@media (max-width: 900px) {
+  .projects-grid { grid-template-columns: 1fr; }
+  .hero-photo-circle { width: 220px; height: 220px; }
+}
+@media (max-width: 600px) {
+  .hero-photo-circle { width: 180px; height: 180px; }
+  .resume-card { padding: 24px; }
+  .resume-job-header { flex-direction: column; gap: 2px; }
 }
