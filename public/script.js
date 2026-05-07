@@ -82,7 +82,7 @@ contactForm.addEventListener('submit', async (e) => {
 
   // Replace with your actual form endpoint (Formspree, Netlify, etc.)
   // For Formspree: https://formspree.io/f/YOUR_FORM_ID
-  const FORM_ENDPOINT = 'https://formspree.io/f/REPLACE_WITH_YOUR_ID';
+  const FORM_ENDPOINT = 'https://formspree.io/f/mvzlbrpq';
 
   try {
     const res = await fetch(FORM_ENDPOINT, {
@@ -123,3 +123,31 @@ const sectionObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.3 });
 
 sections.forEach(s => sectionObserver.observe(s));
+
+// PROJECT TABS
+const projectTabBtns = document.querySelectorAll('[data-ptab]');
+const projectCards = document.querySelectorAll('[data-pcat]');
+projectTabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    projectTabBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const cat = btn.dataset.ptab;
+    projectCards.forEach(card => {
+      card.classList.toggle('hidden', cat !== 'all' && card.dataset.pcat !== cat);
+    });
+  });
+});
+
+// DOCUMENT TABS
+const docTabBtns = document.querySelectorAll('[data-dtab]');
+const docCards = document.querySelectorAll('[data-dcat]');
+docTabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    docTabBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const cat = btn.dataset.dtab;
+    docCards.forEach(card => {
+      card.classList.toggle('hidden', cat !== 'all' && card.dataset.dcat !== cat);
+    });
+  });
+});
